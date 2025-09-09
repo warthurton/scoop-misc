@@ -12,6 +12,9 @@ This is a Scoop bucket repository for miscellaneous Windows applications and uti
 - `pwsh bin/test.ps1` - Run all tests using Pester framework
 - `pwsh Scoop-Bucket.Tests.ps1` - Run bucket-specific tests (imports from Scoop's test framework)
 
+To test a specific manifest file:
+- `pwsh -c "Invoke-Pester -Path ./bucket/app-name.Tests.ps1"` - Test individual manifest
+
 ### Validation Scripts
 - `pwsh bin/checkver.ps1` - Check for version updates across manifests
 - `pwsh bin/checkhashes.ps1` - Verify file hashes in manifests
@@ -35,7 +38,7 @@ App manifests are JSON files in the `bucket/` directory that define:
 - Binary paths and environment variables
 - Auto-update configuration
 
-Use `bucket/app-name.json.template` as a starting point for new manifests.
+Use `bucket/app-name.json.template` as a starting point for new manifests. This template includes all common manifest fields with placeholders.
 
 ## Development Workflow
 
@@ -57,3 +60,4 @@ Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+- Make sure you follow the validation scripts need for files to end with newlines
