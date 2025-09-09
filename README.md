@@ -7,7 +7,7 @@ Scoop bucket for miscellaneous Windows applications and utilities. This bucket p
 To install applications using this bucket:
 
 ```pwsh
-scoop bucket add wa-misc https://github.com/warthurton/scoop-wa-misc
+scoop bucket add wa-misc https://github.com/warthurton/scoop-misc
 scoop install wa-misc/<app-name>
 ```
 
