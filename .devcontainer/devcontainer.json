@@ -1,0 +1,4 @@
+{
+  "image": "ghcr.io/devcontainers/templates/powershell:1.2.2",
+  "features": {}
+}
