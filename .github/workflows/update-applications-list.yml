@@ -102,10 +102,10 @@ jobs:
 
             body += `\n---\n*This issue is automatically managed. It will be closed when all manifests are complete.*`;
 
-            const issueExists = '${{ steps.find-issue.outputs.issue_exists }}' === 'true';
+            const issueExists = core.getInput('issue_exists') === 'true';
 
             if (issueExists) {
-              const issueNumber = parseInt('${{ steps.find-issue.outputs.issue_number }}');
+              const issueNumber = parseInt(core.getInput('issue_number'));
               await github.rest.issues.update({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
