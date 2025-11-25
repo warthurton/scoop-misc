@@ -1,0 +1,23 @@
+{
+    "version": "9.1.9",
+    "description": "Fast and secure remote desktop (RDP, VNC, Fluid) application for Windows",
+    "homepage": "https://jumpdesktop.com/",
+    "license": "proprietary",
+    "notes": "Jump Desktop provides remote desktop access via RDP, VNC, and Fluid protocols with end-to-end encryption.",
+    "url": "https://jumpdesktop.com/downloads/jdwin",
+    "hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "installer": {
+        "script": [
+            "Start-Process \"$dir\\jdwin\" -Wait -ArgumentList '/SILENT'",
+            "Remove-Item \"$dir\\jdwin\""
+        ]
+    },
+    "checkver": {
+        "url": "https://changelog.jumpdesktop.com/jsonfeed.json",
+        "jsonpath": "$..items[?(@.title =~ /Jump Desktop for Windows/)].title",
+        "regex": "Jump Desktop for Windows ([\\d.]+)"
+    },
+    "autoupdate": {
+        "url": "https://jumpdesktop.com/downloads/jdwin"
+    }
+}
