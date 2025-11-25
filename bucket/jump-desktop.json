@@ -9,13 +9,18 @@
     "hash": "0000000000000000000000000000000000000000000000000000000000000000",
     "installer": {
         "script": [
-            "Start-Process \"$dir\\jdwin.exe\" -Wait -ArgumentList '/VERYSILENT'",
-            "Remove-Item \"$dir\\jdwin.exe\""
+            "$installer = Get-ChildItem \"$dir\" -Filter '*.exe' | Select-Object -First 1",
+            "if ($installer) {",
+            "    Start-Process \"$($installer.FullName)\" -Wait -ArgumentList '/VERYSILENT'",
+            "    Remove-Item \"$($installer.FullName)\"",
+            "} else {",
+            "    Write-Error 'No installer found'",
+            "}"
         ]
     },
     "checkver": {
         "url": "https://changelog.jumpdesktop.com/jsonfeed.json",
-        "jsonpath": "$..items[?(@.title =~ /Jump Desktop for Windows/)].title",
+        "jsonpath": "$.items[?(@.title =~ /Jump Desktop for Windows/)].title",
         "regex": "Jump Desktop for Windows ([\\d.]+)"
     },
     "autoupdate": {
