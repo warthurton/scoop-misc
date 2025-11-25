@@ -1,23 +1,14 @@
 {
-    "##": "Hash needs to be updated with actual SHA256 from downloaded file. Network restrictions prevented automatic computation.",
     "version": "9.1.9",
     "description": "Fast and secure remote desktop (RDP, VNC, Fluid) application for Windows",
     "homepage": "https://jumpdesktop.com/",
     "license": "proprietary",
     "notes": "Jump Desktop provides remote desktop access via RDP, VNC, and Fluid protocols with end-to-end encryption.",
     "url": "https://jumpdesktop.com/downloads/jdwin",
-    "hash": "0000000000000000000000000000000000000000000000000000000000000000",
-    "installer": {
-        "script": [
-            "$installer = Get-ChildItem \"$dir\" -Filter '*.exe' | Select-Object -First 1",
-            "if ($installer) {",
-            "    Start-Process \"$($installer.FullName)\" -Wait -ArgumentList '/VERYSILENT'",
-            "    Remove-Item \"$($installer.FullName)\"",
-            "} else {",
-            "    Write-Error 'No installer found'",
-            "}"
-        ]
+    "hash": {
+        "mode": "download"
     },
+    "innosetup": true,
     "checkver": {
         "url": "https://changelog.jumpdesktop.com/",
         "regex": "Jump Desktop for Windows ([\\d.]+)"
