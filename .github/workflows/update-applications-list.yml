@@ -35,9 +35,9 @@ jobs:
         run: |
           git diff --exit-code APPLICATIONS.md
           if ($LASTEXITCODE -eq 1) {
-            echo "changed=true" >> $env:GITHUB_OUTPUT
+            Write-Output "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           } else {
-            echo "changed=false" >> $env:GITHUB_OUTPUT
+            Write-Output "changed=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           }
 
       - name: Commit and push if changed
