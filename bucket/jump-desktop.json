@@ -1,4 +1,5 @@
 {
+    "##": "Hash needs to be updated with actual SHA256 from downloaded file. Network restrictions prevented automatic computation.",
     "version": "9.1.9",
     "description": "Fast and secure remote desktop (RDP, VNC, Fluid) application for Windows",
     "homepage": "https://jumpdesktop.com/",
@@ -8,8 +9,8 @@
     "hash": "0000000000000000000000000000000000000000000000000000000000000000",
     "installer": {
         "script": [
-            "Start-Process \"$dir\\jdwin\" -Wait -ArgumentList '/SILENT'",
-            "Remove-Item \"$dir\\jdwin\""
+            "Start-Process \"$dir\\jdwin.exe\" -Wait -ArgumentList '/VERYSILENT'",
+            "Remove-Item \"$dir\\jdwin.exe\""
         ]
     },
     "checkver": {
