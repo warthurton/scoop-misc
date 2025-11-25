@@ -19,8 +19,7 @@
         ]
     },
     "checkver": {
-        "url": "https://changelog.jumpdesktop.com/jsonfeed.json",
-        "jsonpath": "$.items[?(@.title =~ /^Jump Desktop for Windows [\\d.]+$/)].title",
+        "url": "https://changelog.jumpdesktop.com/",
         "regex": "Jump Desktop for Windows ([\\d.]+)"
     },
     "autoupdate": {
