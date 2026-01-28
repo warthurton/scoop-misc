@@ -10,7 +10,9 @@
     "json.schemas": [
         {
             "url": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
-            "fileMatch": ["bucket/**/*.json"]
+            "fileMatch": [
+                "bucket/**/*.json"
+            ]
         }
     ],
     "files.insertFinalNewline": true,
@@ -21,11 +23,5 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/tmp": true
-    },
-    "chat.tools.terminal.autoApprove": {
-        "/^pwsh bin/test\\.ps1 bucket/block-goose\\.json$/": {
-            "approve": true,
-            "matchCommandLine": true
-        }
     }
 }
