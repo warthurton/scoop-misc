@@ -15,7 +15,12 @@
         }
     },
     "bin": "goose.exe",
-    "shortcuts": [["goose.exe", "Goose"]],
+    "shortcuts": [
+        [
+            "goose.exe",
+            "Goose"
+        ]
+    ],
     "checkver": {
         "github": "https://github.com/block/goose"
     },

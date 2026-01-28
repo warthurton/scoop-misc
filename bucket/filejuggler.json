@@ -18,9 +18,7 @@
         ]
     },
     "uninstaller": {
-        "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
-        ]
+        "script": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
     },
     "checkver": {
         "url": "https://www.filejuggler.com/news/",
