@@ -5,7 +5,8 @@
     "license": "Apache-2.0",
     "notes": [
         "Goose is an extensible AI agent that goes beyond code suggestions.",
-        "It can build entire projects, write and execute code, debug failures, and orchestrate workflows."
+        "It can build entire projects, write and execute code, debug failures, and orchestrate workflows.",
+        "This is a nonportable application that requires admin rights to install."
     ],
     "architecture": {
         "64bit": {
@@ -14,18 +15,19 @@
             "extract_dir": "dist-windows"
         }
     },
-    "bin": [
-        [
-            "goose.exe",
-            "goose-gui.exe"
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process -Wait \"$dir\\goose.exe\" -Verb RunAs | Out-Null"
         ]
-    ],
-    "shortcuts": [
-        [
-            "Goose.exe",
-            "Goose"
+    },
+    "bin": "goose.exe",
+    "shortcuts": [["goose.exe", "Goose"]],
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
         ]
-    ],
+    },
     "checkver": {
         "github": "https://github.com/block/goose"
     },
