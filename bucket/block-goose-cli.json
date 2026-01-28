@@ -16,7 +16,7 @@
     },
     "bin": "goose.exe",
     "post_install": [
-        "Get-ChildItem \"$dir\" -Filter '*.dll' -Recurse | ForEach-Object { Copy-Item $_.FullName \"$dir\" -Force }",
+        "Get-ChildItem \"$dir\" -Filter '*.dll' -File | Where-Object { $_.DirectoryName -ne $dir } | ForEach-Object { Copy-Item $_.FullName \"$dir\" -Force -ErrorAction SilentlyContinue }",
         "Write-Host 'To configure goose, run: goose configure' -ForegroundColor Yellow"
     ],
     "checkver": {
