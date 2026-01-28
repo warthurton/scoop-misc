@@ -10,7 +10,7 @@
         },
         "32bit": {
             "url": "https://github.com/gitkraken/gk-cli/releases/download/v3.1.51/gk_3.1.51_windows_386.zip",
-            "hash": "c321d519772aa09640c6fae6a41a4f6ceaac9900ea91c72ca01c254a62b18200"
+            "hash": "c321d519772aa09640c6fae6a41a4f6ceaac99000ea91c72ca01c254a62b1820"
         }
     },
     "bin": "gk.exe",

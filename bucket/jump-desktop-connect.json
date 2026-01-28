@@ -8,7 +8,7 @@
         "This is a nonportable application that requires admin rights to install."
     ],
     "url": "https://jumpdesktop.com/downloads/connect/win",
-    "hash": "3ad755653e4861f52668f57a1c20d7f1d95518fd81e93428bde596b9c642ab73",
+    "hash": "8a4dfcb55ae3e059b469fbe3e31012ec678bd1c60638e1e427c88460f34eedb1",
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
