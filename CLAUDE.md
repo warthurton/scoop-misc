@@ -9,13 +9,16 @@ This is a Scoop bucket repository for miscellaneous Windows applications and uti
 ## Key Commands
 
 ### Testing
+
 - `pwsh bin/test.ps1` - Run all tests using Pester framework
 - `pwsh Scoop-Bucket.Tests.ps1` - Run bucket-specific tests (imports from Scoop's test framework)
 
 To test a specific manifest file:
+
 - `pwsh -c "Invoke-Pester -Path ./bucket/app-name.Tests.ps1"` - Test individual manifest
 
 ### Validation Scripts
+
 - `pwsh bin/checkver.ps1` - Check for version updates across manifests
 - `pwsh bin/checkhashes.ps1` - Verify file hashes in manifests
 - `pwsh bin/checkurls.ps1` - Validate URLs in manifests
@@ -26,12 +29,15 @@ To test a specific manifest file:
 ## Architecture
 
 ### Directory Structure
+
 - `bucket/` - Contains app manifest JSON files (one per application)
 - `bin/` - PowerShell scripts for maintenance and validation
 - `scripts/` - Additional utility scripts
 
 ### Manifest Files
+
 App manifests are JSON files in the `bucket/` directory that define:
+
 - Application metadata (version, description, homepage, license)
 - Download URLs and hashes for different architectures (64bit, 32bit, arm64)
 - Installation/uninstallation scripts
@@ -55,8 +61,47 @@ Use `bucket/app-name.json.template` as a starting point for new manifests. This 
 - BuildHelpers module (version 2.0.1+) for testing
 - Scoop installed on the system for testing
 
+## Scoop Manifest Schema Validation Rules
+
+**IMPORTANT for GitHub Copilot and Claude**: When generating bucket manifest JSON files, you MUST follow these schema validation rules:
+
+### Hash Requirements
+
+- Hashes MUST be exactly 64 hexadecimal characters (SHA256)
+- Format: `^[a-fA-F0-9]{64}$` or with prefix: `sha256:...`
+- NEVER include incomplete or truncated hashes
+- If you cannot obtain a valid 64-character hash, omit the architecture entirely
+
+### Array and String Field Rules
+
+- `bin`: Can be a string (single executable path), an array of strings (multiple executables), or completely omitted
+    - NEVER use empty arrays: `[]`
+    - Example: `"bin": "gk.exe"` or `"bin": ["gk.exe", "gk-helper.exe"]`
+- `shortcuts`: Can be an array of arrays (icon definitions) or omitted, but MUST have at least 1 item if present
+    - NEVER use empty arrays: `[]`
+    - If the app has no shortcuts, omit this field entirely
+- `notes`: Use array format: `["note1", "note2"]` - can be empty but should contain helpful info
+- `env_add_path`, `persist`: Use array format with at least 1 item if present, or omit field
+
+### Architecture Requirements
+
+- If using `architecture` object, provide complete data for each architecture (url and hash)
+- ARM64 support is optional - only include if verified binaries exist and valid hashes obtained
+- When in doubt about ARM64 availability, test the download URL or omit the architecture entirely
+
+### Testing Before Submission
+
+Always run validation tests to catch schema errors:
+
+```powershell
+pwsh bin/test.ps1
+```
+
+Ensure all manifest validation passes with 0 errors.
+
 # important-instruction-reminders
+
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
-NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+NEVER proactively create documentation files (\*.md) or README files. Only create documentation files if explicitly requested by the User.
