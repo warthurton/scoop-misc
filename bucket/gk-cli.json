@@ -14,7 +14,9 @@
         }
     },
     "bin": "gk.exe",
-    "checkver": "github",
+    "checkver": {
+        "github": "https://github.com/gitkraken/gk-cli"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {

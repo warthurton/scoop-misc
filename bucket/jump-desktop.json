@@ -1,5 +1,5 @@
 {
-    "version": "9.1.9",
+    "version": "9.0.20.0",
     "description": "Fast and secure remote desktop (RDP, VNC, Fluid) application for Windows",
     "homepage": "https://jumpdesktop.com/",
     "license": "proprietary",
@@ -17,13 +17,11 @@
         ]
     },
     "uninstaller": {
-        "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
-        ]
+        "script": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }"
     },
     "checkver": {
-        "url": "https://changelog.jumpdesktop.com/",
-        "regex": "Jump Desktop for Windows ([\\d.]+)"
+        "url": "https://mirror.jumpdesktop.com/downloads/jdwin/client-win3.txt",
+        "regex": "ProductVersion = ([\\d.]+)"
     },
     "autoupdate": {
         "url": "https://jumpdesktop.com/downloads/jdwin#/JumpDesktop.exe"
