@@ -11,7 +11,12 @@
     "url": "https://github.com/sw3103/movemouse/releases/download/v4.19.1/movemouse-4.19.1.zip",
     "hash": "933e3f1520955182ffce9052c64a5407718b78368ceb60cfb72d69e3db3a5262",
     "bin": "Move Mouse.exe",
-    "shortcuts": [["Move Mouse.exe", "Move Mouse"]],
+    "shortcuts": [
+        [
+            "Move Mouse.exe",
+            "Move Mouse"
+        ]
+    ],
     "checkver": {
         "github": "https://github.com/sw3103/movemouse",
         "regex": "v([\\d.]+)"
