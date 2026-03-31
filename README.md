@@ -7,13 +7,13 @@ Scoop bucket for miscellaneous Windows applications and utilities. This bucket p
 To install applications using this bucket:
 
 ```pwsh
-scoop bucket add wa-misc https://github.com/warthurton/scoop-misc
-scoop install wa-misc/<app-name>
+scoop bucket add warthurton_scoop-misc https://github.com/warthurton/scoop-misc
+scoop install warthurton_scoop-misc/<app-name>
 ```
 
 For example, to install a specific application:
 ```pwsh
-scoop install wa-misc/some-app
+scoop install warthurton_scoop-misc/some-app
 ```
 
 ## How do I contribute new manifests?
