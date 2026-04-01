@@ -11,7 +11,7 @@
     "hash": "54718ea03fd669f88b4592711e4309e6f9fd875dbe3caf709f502013de363726",
     "installer": {
         "script": [
-            "$p = Start-Process -FilePath \"$dir\\JumpDesktop.exe\" -ArgumentList '/exenoui', '/qn', '/norestart' -Wait -PassThru",
+            "$p = Start-Process -FilePath \"$dir\\JumpDesktop.exe\" -Wait -PassThru",
             "if ($p.ExitCode -ne 0) { throw \"Installer exited with code $($p.ExitCode).\" }",
             "Remove-Item \"$dir\\JumpDesktop.exe\" -Force"
         ]
