@@ -12,6 +12,9 @@
             "Sound Manager"
         ]
     ],
+    "persist": [
+        "Schemes"
+    ],
     "checkver": {
         "github": "https://github.com/ORelio/Sound-Manager"
     },
