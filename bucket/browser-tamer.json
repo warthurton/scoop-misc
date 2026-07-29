@@ -3,6 +3,7 @@
     "description": "Redirects URLs to a browser of your choice based on configurable rules, with profile and protocol support",
     "homepage": "https://github.com/aloneguid/bt",
     "license": "Apache-2.0",
+    "depends": "lessmsi",
     "notes": [
         "After installing, open Windows Settings > Apps > Default Apps and set 'Browser Tamer'",
         "as the default handler for http, https, .htm, and .html.",
@@ -23,7 +24,7 @@
             "$msi = Get-ChildItem $dir -Filter '*.msi' | Select-Object -First 1 -ExpandProperty FullName",
             "$extractPath = \"$dir\\_extract\"",
             "New-Item -ItemType Directory -Force -Path $extractPath | Out-Null",
-            "Start-Process msiexec -ArgumentList \"/a `\"$msi`\" TARGETDIR=`\"$extractPath`\" /qn\" -Wait -NoNewWindow",
+            "& lessmsi x \"$msi\" \"$extractPath\\\"; if ($LASTEXITCODE -ne 0) { throw \"lessmsi extraction failed (exit code $LASTEXITCODE)\" }",
             "$btExe = Get-ChildItem $extractPath -Filter 'bt.exe' -Recurse | Select-Object -First 1",
             "if (!$btExe) { throw 'bt.exe not found in extracted MSI contents.' }",
             "Get-ChildItem (Split-Path $btExe.FullName) | Move-Item -Destination $dir -Force",
