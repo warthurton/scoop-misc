@@ -24,7 +24,7 @@
             "$msi = Get-ChildItem $dir -Filter '*.msi' | Select-Object -First 1 -ExpandProperty FullName",
             "$extractPath = \"$dir\\_extract\"",
             "New-Item -ItemType Directory -Force -Path $extractPath | Out-Null",
-            "lessmsi x \"$msi\" \"$extractPath\\\"",
+            "& lessmsi x \"$msi\" \"$extractPath\\\"; if ($LASTEXITCODE -ne 0) { throw \"lessmsi extraction failed (exit code $LASTEXITCODE)\" }",
             "$btExe = Get-ChildItem $extractPath -Filter 'bt.exe' -Recurse | Select-Object -First 1",
             "if (!$btExe) { throw 'bt.exe not found in extracted MSI contents.' }",
             "Get-ChildItem (Split-Path $btExe.FullName) | Move-Item -Destination $dir -Force",
