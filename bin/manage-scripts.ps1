@@ -40,7 +40,7 @@ $ErrorActionPreference = 'Stop'
 
 # Paths
 $scriptsDir = "$PSScriptRoot/../scripts/$App"
-$hashFile = "$scriptsDir/.hashes.json"
+$hashFile = "$PSScriptRoot/../.github/hashes/$App.json"
 $tempDir = "$env:TEMP/scoop-scripts-$App-$([guid]::NewGuid())"
 
 try {
