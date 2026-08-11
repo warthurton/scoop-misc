@@ -6,15 +6,30 @@
     "url": "https://github.com/andy-portmen/native-client/releases/download/v1.1.2/windows.zip",
     "hash": "71a5e607e3d5b172f84c459df63b577a78809c565febaff738912ca429f23312",
     "notes": [
-        "After install, run the native host registration script:",
-        "  & \"$(scoop prefix open-in)\\install.bat\"",
-        "To uninstall the native host prior to 'scoop uninstall open-in':",
-        "  & \"$(scoop prefix open-in)\\uninstall.bat\""
+        "Run the patched installation script from the bucket's scripts/open-in directory to register:",
+        "  & \"<bucket-path>\\scripts\\open-in\\install.bat\"",
+        "To uninstall the native host before uninstalling this app:",
+        "  & \"<bucket-path>\\scripts\\open-in\\uninstall.bat\"",
+        "See: https://github.com/warthurton/scoop-misc/tree/master/scripts/open-in"
     ],
-    "post_install": "Write-Host \"Run '& \\\"$((scoop prefix open-in))\\install.bat\\\"' to finish setup.\"",
+    "post_install": [
+        "$buckRoot = ''",
+        "if (scoop config rootPath) { $buckRoot = (scoop config rootPath) + '\\buckets\\scoop-misc' }",
+        "if (-not $buckRoot -or -not (Test-Path $buckRoot)) { $buckRoot = $env:USERPROFILE + '\\scoop\\buckets\\scoop-misc' }",
+        "Write-Host 'Installation complete.' -ForegroundColor Green",
+        "Write-Host ''",
+        "Write-Host 'To register the native host, run:' -ForegroundColor Cyan",
+        "Write-Host ('  & \"' + $buckRoot + '\\scripts\\open-in\\install.bat\"')",
+        "Write-Host ''",
+        "Write-Host 'To unregister, run:' -ForegroundColor Cyan",
+        "Write-Host ('  & \"' + $buckRoot + '\\scripts\\open-in\\uninstall.bat\"')"
+    ],
     "pre_uninstall": [
-        "$uninstallPath = \"$(scoop prefix open-in)\\uninstall.bat\"",
-        "if (Test-Path $uninstallPath) { & $uninstallPath }"
+        "$buckRoot = ''",
+        "if (scoop config rootPath) { $buckRoot = (scoop config rootPath) + '\\buckets\\scoop-misc' }",
+        "if (-not $buckRoot -or -not (Test-Path $buckRoot)) { $buckRoot = $env:USERPROFILE + '\\scoop\\buckets\\scoop-misc' }",
+        "Write-Host 'Before uninstalling, unregister the native host:' -ForegroundColor Yellow",
+        "Write-Host ('  & \"' + $buckRoot + '\\scripts\\open-in\\uninstall.bat\"')"
     ],
     "checkver": {
         "github": "https://github.com/andy-portmen/native-client",
