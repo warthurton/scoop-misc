@@ -16,7 +16,7 @@ This directory contains patched versions of `install.bat` and `uninstall.bat` fo
 
 ## Hash Tracking
 
-Upstream script hashes are tracked in `.github/hashes/open-in.json` to detect when upstream scripts change. This file is kept outside the bucket to avoid validation errors.
+Upstream script hashes are tracked in `.github/hashes/open-in.txt` (simple key=value format) to detect when upstream scripts change. Using a text file prevents validation errors from the Scoop test suite.
 
 ## Steps to Update When Upstream Changes
 
@@ -26,4 +26,4 @@ Upstream script hashes are tracked in `.github/hashes/open-in.json` to detect wh
 4. Apply the patches above if needed
 5. Update files in this directory
 6. Run: `.\bin\manage-scripts.ps1 -App open-in -Repo andy-portmen/native-client -Version <new-version>`
-7. Verify `.github/hashes/open-in.json` is updated with new hashes
+7. Verify `.github/hashes/open-in.txt` is updated with new hashes

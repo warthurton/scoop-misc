@@ -40,7 +40,7 @@ $ErrorActionPreference = 'Stop'
 
 # Paths
 $scriptsDir = "$PSScriptRoot/../scripts/$App"
-$hashFile = "$PSScriptRoot/../.github/hashes/$App.json"
+$hashFile = "$PSScriptRoot/../.github/hashes/$App.txt"
 $tempDir = "$env:TEMP/scoop-scripts-$App-$([guid]::NewGuid())"
 
 try {
@@ -81,10 +81,14 @@ try {
     Write-Host "  install.bat:   $installHash"
     Write-Host "  uninstall.bat: $uninstallHash"
 
-    # Load known hashes
+    # Load known hashes from text file format
     $knownHashes = @{}
     if (Test-Path $hashFile) {
-        $knownHashes = Get-Content $hashFile | ConvertFrom-Json -AsHashtable
+        Get-Content $hashFile | ForEach-Object {
+            if ($_ -match '^(.+?)=(.+)$') {
+                $knownHashes[$Matches[1]] = $Matches[2]
+            }
+        }
     }
 
     # Check for changes
@@ -136,7 +140,7 @@ try {
     Set-Content "$scriptsDir/install.bat" $installContent -Encoding ASCII
     Set-Content "$scriptsDir/uninstall.bat" $uninstallContent -Encoding ASCII
 
-    # Save hashes
+    # Save hashes in text format
     $hashData = @{
         version = $Version
         timestamp = Get-Date -Format "o"
@@ -144,7 +148,8 @@ try {
         uninstallBat = $uninstallHash
     }
 
-    $hashData | ConvertTo-Json | Set-Content $hashFile
+    $hashContent = $hashData.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" } | Join-String -Separator "`n"
+    Set-Content $hashFile $hashContent
 
     Write-Host "✓ Scripts patched and saved to $scriptsDir" -ForegroundColor Green
     Write-Host "✓ Hashes updated in $hashFile" -ForegroundColor Green
