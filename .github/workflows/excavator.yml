@@ -15,3 +15,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_UPDATED: 1
+      - name: Check Script Updates
+        shell: pwsh
+        run: |
+          # Check for upstream script changes in managed apps
+          .\bin\manage-scripts.ps1 -App open-in -Repo andy-portmen/native-client -Version 1.1.2 -CheckOnly
+        continue-on-error: true
+      - name: Create Issue if Scripts Changed
+        if: failure()
+        uses: actions/github-script@main
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '[open-in] Upstream scripts have changed',
+              body: 'The upstream install.bat or uninstall.bat have changed. Review scripts/open-in/.hashes.json and update the patched versions accordingly. Run: `.\bin\manage-scripts.ps1 -App open-in -Repo andy-portmen/native-client -Version 1.1.2`',
+              labels: ['upstream-change', 'manual-review']
+            })
+
