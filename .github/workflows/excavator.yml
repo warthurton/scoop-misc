@@ -1,8 +1,8 @@
 on:
   workflow_dispatch:
   schedule:
-    # run once a week on Monday at 00:20
-    - cron: "20 0 * * 1"
+    # run nightly at 00:20
+    - cron: "20 0 * * *"
 name: Excavator
 jobs:
   excavate:
