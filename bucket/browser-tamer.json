@@ -1,5 +1,5 @@
 {
-    "version": "6.1.0",
+    "version": "6.1.1",
     "description": "Redirects URLs to a browser of your choice based on configurable rules, with profile and protocol support",
     "homepage": "https://github.com/aloneguid/bt",
     "license": "Apache-2.0",
@@ -11,12 +11,12 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/aloneguid/bt/releases/download/6.1.0/BrowserTamer-6.1.0-win64.msi",
-            "hash": "1aacbeb24a3f2312f98974299d7c575df54645a69e0d988be4362c807d895e50"
+            "url": "https://github.com/aloneguid/bt/releases/download/6.1.1/BrowserTamer-6.1.1-win64.msi",
+            "hash": "71cbd804a291bac6df8aa7e307052739b28626165aa7364b1ae0815572e1a883"
         },
         "arm64": {
-            "url": "https://github.com/aloneguid/bt/releases/download/6.1.0/BrowserTamer-6.1.0-win-arm64.msi",
-            "hash": "671679e08bcf8a90741ae4473a19530441a0fbe3cfae521d2b07ba2de3e6ccc6"
+            "url": "https://github.com/aloneguid/bt/releases/download/6.1.1/BrowserTamer-6.1.1-win-arm64.msi",
+            "hash": "7c67ce6f583e05823ccf838a4bbe52d4370f2850b89886dfd788a99b6e9484fb"
         }
     },
     "installer": {
