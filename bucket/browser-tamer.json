@@ -48,7 +48,7 @@
         "# x-bt:// custom protocol",
         "New-Item -Path 'HKCU:\\Software\\Classes\\x-bt' -Force | Out-Null",
         "Set-ItemProperty -Path 'HKCU:\\Software\\Classes\\x-bt' -Name '(Default)' -Value 'URL:BrowserTamer Protocol' -Force",
-        "New-Item -Path 'HKCU:\\Software\\Classes\\x-bt' -Name 'URL Protocol' -Force | Out-Null",
+        "New-ItemProperty -Path 'HKCU:\\Software\\Classes\\x-bt' -Name 'URL Protocol' -Value '' -PropertyType String -Force | Out-Null",
         "New-Item -Path 'HKCU:\\Software\\Classes\\x-bt\\shell\\open\\command' -Force | Out-Null",
         "Set-ItemProperty -Path 'HKCU:\\Software\\Classes\\x-bt\\shell\\open\\command' -Name '(Default)' -Value \"`\"$exe`\" `\"%1`\"\" -Force",
         "# Register as a StartMenuInternet browser entry",
