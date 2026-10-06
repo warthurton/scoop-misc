@@ -3,10 +3,7 @@
     "description": "An on-machine AI agent that automates engineering tasks from start to finish - CLI version",
     "homepage": "https://block.github.io/goose/",
     "license": "Apache-2.0",
-    "notes": [
-        "Goose is an extensible AI agent that goes beyond code suggestions.",
-        "It can build entire projects, write and execute code, debug failures, and orchestrate workflows."
-    ],
+    "notes": "This package is deprecated. Use 'goose-cli' from the 'main' bucket instead: scoop install main/goose-cli",
     "architecture": {
         "64bit": {
             "url": "https://github.com/block/goose/releases/download/v1.23.2/goose-x86_64-pc-windows-gnu.zip",
