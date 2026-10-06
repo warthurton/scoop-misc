@@ -3,6 +3,7 @@
     "description": "GitKraken CLI - A premium CLI experience for managing multiple repositories with familiar GIT CLI commands",
     "homepage": "https://github.com/gitkraken/gk-cli",
     "license": "Proprietary",
+    "notes": "This package is deprecated. Use 'gk' from the 'main' bucket instead: scoop install main/gk",
     "architecture": {
         "64bit": {
             "url": "https://github.com/gitkraken/gk-cli/releases/download/v3.1.76/gk_3.1.76_windows_amd64.zip",
