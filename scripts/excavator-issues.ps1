@@ -68,7 +68,7 @@ if ($LogPath) {
     $jobs = gh api "repos/$env:GH_REPO/actions/runs/$RunId/jobs" --jq '.jobs[].id'
     if ($LASTEXITCODE -ne 0) { throw "Could not list the jobs of run $RunId" }
     $log = $jobs | ForEach-Object {
-        gh api "repos/$env:GH_REPO/actions/jobs/$_/logs"
+        gh api "repos/$env:GH_REPO/actions/jobs/$_/logs" --allow-escape-sequences
         if ($LASTEXITCODE -ne 0) { throw "Could not download the log of job $_" }
     }
 }
