@@ -65,11 +65,20 @@ function Get-IssueTitle($app) {
 if ($LogPath) {
     $log = Get-Content $LogPath
 } else {
-    $jobs = gh api "repos/$env:GH_REPO/actions/runs/$RunId/jobs" --jq '.jobs[].id'
+    # Skipped jobs have no log to download
+    $jobs = gh api "repos/$env:GH_REPO/actions/runs/$RunId/jobs" --paginate --jq '.jobs[] | select(.conclusion != "skipped") | .id'
     if ($LASTEXITCODE -ne 0) { throw "Could not list the jobs of run $RunId" }
+    $logIncomplete = $false
     $log = $jobs | ForEach-Object {
-        gh api "repos/$env:GH_REPO/actions/jobs/$_/logs"
-        if ($LASTEXITCODE -ne 0) { throw "Could not download the log of job $_" }
+        $job = $_
+        foreach ($attempt in 1..3) {
+            # The logs contain colour codes, which gh refuses to print unless told otherwise
+            $jobLog = gh api "repos/$env:GH_REPO/actions/jobs/$job/logs" --allow-escape-sequences
+            if ($LASTEXITCODE -eq 0) { $jobLog; return }
+            Start-Sleep -Seconds (5 * $attempt)
+        }
+        Write-Warning "Could not download the log of job $job"
+        $script:logIncomplete = $true
     }
 }
 
@@ -105,8 +114,8 @@ foreach ($app in $errors.Keys) {
     }
 }
 
-# A failed run may have stopped before reaching every manifest, so close nothing
-if (!$RunFailed) {
+# A failed run may have stopped before reaching every manifest, and a missing log hides errors, so close nothing
+if (!$RunFailed -and !$logIncomplete) {
     foreach ($issue in $open) {
         if (@($errors.Keys | ForEach-Object { Get-IssueTitle $_ }) -notcontains $issue.title) {
             gh issue close $issue.number --comment "Excavator no longer reports errors for this.$(if ($runUrl) { " Run: $runUrl" })"

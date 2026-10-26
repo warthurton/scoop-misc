@@ -1,5 +1,5 @@
 {
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Task Manager by retired Microsoft engineer Dave Plummer",
     "homepage": "https://www.tmog.org",
     "license": "Proprietary",
@@ -11,12 +11,12 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://www.tmog.org/rtm/downloads/TMOG-Task-Manager-Setup-1.0.1-0-x64-b4edf70fa040.exe",
-            "hash": "b4edf70fa040968958c662ffb09feeeb0eeca07759e6ed7742606bcc39f29fc6"
+            "url": "https://www.tmog.org/rtm/downloads/TMOG-Task-Manager-Setup-1.1.0-0-x64-3936d8d1d870.exe",
+            "hash": "3936d8d1d870f86d5e204fe139e056a6a0ad398e8e1e53bb0ef876cdc0e3dac6"
         },
         "arm64": {
-            "url": "https://www.tmog.org/rtm/downloads/TMOG-Task-Manager-Setup-1.0.1-0-arm64-a317a09fc59e.exe",
-            "hash": "a317a09fc59ed7ec094739fcddefd80cf4eeac8fbb239fb12d0c8c0466a9d21b"
+            "url": "https://www.tmog.org/rtm/downloads/TMOG-Task-Manager-Setup-1.1.0-0-arm64-01408820f65f.exe",
+            "hash": "01408820f65f0f67290a1088fc32924c55f0c345675f35c3028033f046104036"
         }
     },
     "innosetup": true,
@@ -86,7 +86,7 @@
             "    Write-Output ('{0} {1} {2}' -f $x64.version, $x64.versionedArtifact, $arm64.versionedArtifact)",
             "}"
         ],
-        "regex": "([\\d.]+) /rtm/downloads/(?<x64>\\S+) /rtm/downloads/(?<arm64>\\S+)"
+        "regex": "([\\d.]+) \\S*/downloads/(?<x64>\\S+) \\S*/downloads/(?<arm64>\\S+)"
     },
     "autoupdate": {
         "architecture": {
