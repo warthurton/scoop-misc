@@ -1,27 +1,44 @@
 {
-    "version": "2.5.0",
-    "description": "Supercharge Windows 11's File Explorer: auto-convert windows to tabs, duplicate tabs, reopen closed ones, and more",
-    "homepage": "https://github.com/w4po/ExplorerTabUtility",
+    "version": "2.6.0",
+    "description": "Community-maintained fork of ExplorerTabUtility: supercharge Windows 11's File Explorer: auto-convert windows to tabs, duplicate tabs, reopen closed ones, and more",
+    "##": [
+        "Original upstream (kept for reference): https://github.com/w4po/ExplorerTabUtility",
+        "Last upstream version: 2.5.0 (releases/download/v2.5.0/ExplorerTabUtility_v2.5.0_<arch>_Net9.0_FrameworkDependent.zip)"
+    ],
+    "homepage": "https://github.com/lazyalex616/ExplorerTabPlus",
     "license": "MIT",
     "notes": [
         "Requires the .NET 9 Desktop Runtime (framework-dependent build).",
-        "Settings are not persisted across updates; back up your configuration manually."
+        "Settings (%APPDATA%\\ExplorerTabUtility\\settings.json) are persisted via a junction to Scoop's persist directory."
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v2.5.0/ExplorerTabUtility_v2.5.0_x64_Net9.0_FrameworkDependent.zip",
-            "hash": "7b16a202941342cd31090ec9b173db1f15ef02d1a79daf79e9278c1c16c953cd"
+            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_x64_Net9.0_FrameworkDependent.zip",
+            "hash": "309bf7e15822923e97b273bb112936eb79103b38b4968b95661bc9d71a87230d"
         },
         "32bit": {
-            "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v2.5.0/ExplorerTabUtility_v2.5.0_x86_Net9.0_FrameworkDependent.zip",
-            "hash": "b4566c009fee805cc8a729adb47bfce1385e15a4eb5665919d8b306a91fa3cb9"
+            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_x86_Net9.0_FrameworkDependent.zip",
+            "hash": "6450bedfb4c1be7f655519bbc62ba7c8c0f80eb02f7ba6c13318045a60cbe0a2"
         },
         "arm64": {
-            "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v2.5.0/ExplorerTabUtility_v2.5.0_arm64_Net9.0_FrameworkDependent.zip",
-            "hash": "ff6f7a3c8aeecd1b21595d461e252ce7d9d4c42aad9def64c40d9db6e244a196"
+            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_arm64_Net9.0_FrameworkDependent.zip",
+            "hash": "aa505c3cb84f6c525a83ba4bb2f4f231d0d289794e20b1cbc678ab57419171b6"
         }
     },
     "extract_dir": "ExplorerTabUtility",
+    "pre_install": [
+        "$settings = \"$env:APPDATA\\ExplorerTabUtility\"",
+        "ensure $persist_dir | Out-Null",
+        "if ((Test-Path $settings) -and -not ((Get-Item $settings -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) {",
+        "    if (-not (Test-Path \"$persist_dir\\settings.json\")) { Copy-Item \"$settings\\*\" $persist_dir -Recurse -Force }",
+        "    Remove-Item $settings -Recurse -Force",
+        "}",
+        "if (-not (Test-Path $settings)) { New-Item -ItemType Junction -Path $settings -Target $persist_dir | Out-Null }"
+    ],
+    "pre_uninstall": [
+        "$settings = \"$env:APPDATA\\ExplorerTabUtility\"",
+        "if ((Test-Path $settings) -and ((Get-Item $settings -Force).Attributes -band [IO.FileAttributes]::ReparsePoint)) { [IO.Directory]::Delete($settings) }"
+    ],
     "bin": "ExplorerTabUtility.exe",
     "shortcuts": [
         [
@@ -30,18 +47,18 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/w4po/ExplorerTabUtility"
+        "github": "https://github.com/lazyalex616/ExplorerTabPlus"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v$version/ExplorerTabUtility_v$version_x64_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x64_Net9.0_FrameworkDependent.zip"
             },
             "32bit": {
-                "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v$version/ExplorerTabUtility_v$version_x86_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x86_Net9.0_FrameworkDependent.zip"
             },
             "arm64": {
-                "url": "https://github.com/w4po/ExplorerTabUtility/releases/download/v$version/ExplorerTabUtility_v$version_arm64_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_arm64_Net9.0_FrameworkDependent.zip"
             }
         }
     }
