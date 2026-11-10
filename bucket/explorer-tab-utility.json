@@ -1,11 +1,11 @@
 {
-    "version": "2.6.0",
+    "version": "2.6.0.1",
     "description": "Community-maintained fork of ExplorerTabUtility: supercharge Windows 11's File Explorer: auto-convert windows to tabs, duplicate tabs, reopen closed ones, and more",
     "##": [
         "Original upstream (kept for reference): https://github.com/w4po/ExplorerTabUtility",
         "Last upstream version: 2.5.0 (releases/download/v2.5.0/ExplorerTabUtility_v2.5.0_<arch>_Net9.0_FrameworkDependent.zip)"
     ],
-    "homepage": "https://github.com/lazyalex616/ExplorerTabPlus",
+    "homepage": "https://github.com/warthurton/ExplorerTabPlus",
     "license": "MIT",
     "notes": [
         "Requires the .NET 9 Desktop Runtime (framework-dependent build).",
@@ -13,16 +13,16 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_x64_Net9.0_FrameworkDependent.zip",
-            "hash": "309bf7e15822923e97b273bb112936eb79103b38b4968b95661bc9d71a87230d"
+            "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v2.6.0.1/ExplorerTabUtility_v2.6.0.1_x64_Net9.0_FrameworkDependent.zip",
+                        "hash": "6c175781c27c78d6b3b4baa9b85e4f0bdaf4a0e6ca23da0e510926ec0453f9f7"
         },
         "32bit": {
-            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_x86_Net9.0_FrameworkDependent.zip",
-            "hash": "6450bedfb4c1be7f655519bbc62ba7c8c0f80eb02f7ba6c13318045a60cbe0a2"
+            "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v2.6.0.1/ExplorerTabUtility_v2.6.0.1_x86_Net9.0_FrameworkDependent.zip",
+                        "hash": "a66dcd959cfb192d2a419f3bedb513fd958590bcec0c727df5faea4dc2bf2e9f"
         },
         "arm64": {
-            "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v2.6.0/ExplorerTabUtility_v2.6.0_arm64_Net9.0_FrameworkDependent.zip",
-            "hash": "aa505c3cb84f6c525a83ba4bb2f4f231d0d289794e20b1cbc678ab57419171b6"
+            "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v2.6.0.1/ExplorerTabUtility_v2.6.0.1_arm64_Net9.0_FrameworkDependent.zip",
+                        "hash": "a8b59e350ef542d060dad086951e1c120afb4ea76bc632e7183d10e38642dacf"
         }
     },
     "extract_dir": "ExplorerTabUtility",
@@ -47,18 +47,18 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/lazyalex616/ExplorerTabPlus"
+        "github": "https://github.com/warthurton/ExplorerTabPlus"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x64_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x64_Net9.0_FrameworkDependent.zip"
             },
             "32bit": {
-                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x86_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_x86_Net9.0_FrameworkDependent.zip"
             },
             "arm64": {
-                "url": "https://github.com/lazyalex616/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_arm64_Net9.0_FrameworkDependent.zip"
+                "url": "https://github.com/warthurton/ExplorerTabPlus/releases/download/v$version/ExplorerTabUtility_v$version_arm64_Net9.0_FrameworkDependent.zip"
             }
         }
     }
